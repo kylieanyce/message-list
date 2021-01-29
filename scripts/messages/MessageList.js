@@ -2,6 +2,7 @@ import { useMessages } from "./MessageProvider.js"
 import { Message } from "./Message.js"
 
 const contentTarget = document.querySelector(".messages")
+const eventHub = document.querySelector(".container")
 
 
 export const MessageList = () => {
@@ -19,8 +20,9 @@ const render = messageArray => {
     contentTarget.innerHTML = combinedSections
 }
 
-const eventHub = document.querySelector(".container")
-
+//This event hub is here listening for what color was chosen, 
+//so it can be used in the render and messageList functions
+//to render to DOM
 eventHub.addEventListener("colorChosen", event => {
     const color = event.detail.color
     // console.log(event.detail.color)

@@ -1,26 +1,20 @@
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".themes")
 
-// Listen for browser generated click event in this component
+
+//This event hub is here because the button html lives here. This event 
+//is waiting for a button click on a specific color
 eventHub.addEventListener("click", clickEvent => {
-
-    // Make sure it was one of the color buttons
     if (clickEvent.target.id.startsWith("btnTheme--")) {
-
-        // Get the chosen color
         const [prefix, chosenColor] = clickEvent.target.id.split("--")
 
-        /*
-            Create a new custom event, with a good name, and
-            add a property to the `detail` object that specifies
-            which color was chosen
-        */
         const colorChosenEvent = new CustomEvent("colorChosen", {
             detail: {
                 color: chosenColor
             }
         })
-
+//The event hub with a dispatch sends the detail to the other event hub
+//to then be rendered on DOM
         eventHub.dispatchEvent(colorChosenEvent)
     }
 })
